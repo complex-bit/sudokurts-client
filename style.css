@@ -12,7 +12,7 @@
   --given:        #9a9a9a;   /* pre-filled puzzle cells  */
   --wrong:        #ff3333;
   --accent:       #ffffff;
-  --cell-size:    52px;
+  --cell-size:    min(52px, 10vw);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -111,6 +111,22 @@ button:hover { opacity: 0.85; }
 
 .btn-secondary:hover { color: var(--text); border-color: var(--text-dim); }
 
+/* --- Numpad ---------------------------------------------------------------- */
+.numpad {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 6px;
+    width: 100%;
+    max-width: calc(var(--cell-size) * 9);
+}
+
+.numpad-key {
+    padding: 12px 0;
+    font-size: 1.1rem;
+}
+
+
+
 /* ── Scoreboard ───────────────────────────────────────────────────────────── */
 
 .scoreboard {
@@ -187,6 +203,7 @@ button:hover { opacity: 0.85; }
 .cell-empty:hover { background: var(--surface); }
 .cell-mine     { color: var(--mine);     background: rgba(0,229,160,0.08); }
 .cell-opponent { color: var(--opponent); background: rgba(255,107,107,0.08); }
+.cell-selected { background: var(--surface); outline: 2px solid var(--accent); }
 
 .cell-wrong {
   background: rgba(255,51,51,0.2);

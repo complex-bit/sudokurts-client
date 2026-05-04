@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sudoku PVP</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sudokurts</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
 
-  <!-- Home -->
-  <div id="screen-home" style="display:none">
-    <h1>SUDOKURTS</h1>
-    <!-- <p class="subtitle">Fill cells to score. Most points wins.</p> -->
-    <button id="btn-find-game">Find Game</button>
-  </div>
+        <!-- Home -->
+        <div id="screen-home" style="display:none">
+            <h1>SUDOKURTS</h1>
+            <!-- <p class="subtitle">Fill cells to score. Most points wins.</p> -->
+            <button id="btn-find-game">Find Game</button>
+        </div>
 
-  <!-- Waiting -->
-  <div id="screen-waiting" style="display:none">
-    <p class="waiting-text">Waiting for opponent</p>
-    <div class="spinner"></div>
-    <button id="btn-cancel" class="btn-secondary">Cancel</button>
-  </div>
+        <!-- Waiting -->
+        <div id="screen-waiting" style="display:none">
+            <p class="waiting-text">Waiting for opponent</p>
+            <div class="spinner"></div>
+            <button id="btn-cancel" class="btn-secondary">Cancel</button>
+        </div>
 
-  <!-- Game -->
-  <div id="screen-game" style="display:none">
-    <div class="scoreboard">
-      <!-- OLD  
-      <div class="score score-mine">
-        <span class="score-label">You</span>
-        <span id="score-mine" class="score-value">0</span>
-      </div>
-      <div class="score score-opponent">
-        <span class="score-label">Opponent</span>
-        <span id="score-opponent" class="score-value">0</span>
-      </div>
-      -->
-    <div class="score score-mine">
-        <span class="score-label">You</span>
-        <span id="score-mine" class="score-value">0</span>
-        <span id="lives-mine" class="lives lives-mine">♥♥♥</span>
-    </div>
-    <div class="score score-opponent">
-        <span class="score-label">Opponent</span>
-        <span id="score-opponent" class="score-value">0</span>
-        <span id="lives-opponent" class="lives lives-opponent">♥♥♥</span>
-    </div>
-    </div>
-    <div id="board" class="board"></div>
-    <p class="hint">Click a cell and press 1–9</p>
-  </div>
+        <!-- Game -->
+        <div id="screen-game" style="display:none">
+            <div class="scoreboard">
+                <div class="score score-mine">
+                    <span class="score-label">You</span>
+                    <span id="score-mine" class="score-value">0</span>
+                    <span id="lives-mine" class="lives lives-mine">♥♥♥</span>
+                </div>
+                <div class="score score-opponent">
+                    <span class="score-label">Opponent</span>
+                    <span id="score-opponent" class="score-value">0</span>
+                    <span id="lives-opponent" class="lives lives-opponent">♥♥♥</span>
+                </div>
+            </div>
+            <div id="board" class="board"></div>
+            <p class="hint">Click a cell and press 1–9</p>
+            <div id="numpad" class="numpad">
+                <button class="numpad-key" data-value="1">1</button>
+                <button class="numpad-key" data-value="2">2</button>
+                <button class="numpad-key" data-value="3">3</button>
+                <button class="numpad-key" data-value="4">4</button>
+                <button class="numpad-key" data-value="5">5</button>
+                <button class="numpad-key" data-value="6">6</button>
+                <button class="numpad-key" data-value="7">7</button>
+                <button class="numpad-key" data-value="8">8</button>
+                <button class="numpad-key" data-value="9">9</button>
+            </div>
+        </div>
 
-  <!-- Game over -->
-  <div id="screen-gameover" style="display:none">
-    <h2 id="gameover-result"></h2>
-    <p id="gameover-scores" class="gameover-scores"></p>
-    <button id="btn-play-again">Play Again</button>
-  </div>
+        <!-- Game over -->
+        <div id="screen-gameover" style="display:none">
+            <h2 id="gameover-result"></h2>
+            <p id="gameover-scores" class="gameover-scores"></p>
+            <button id="btn-play-again">Play Again</button>
+        </div>
 
-  <script type="module">
-    import init from "./pkg/client.js";
+        <script type="module">
+            import init from "./pkg/client.js";
     await init();
-  </script>
-</body>
+        </script>
+    </body>
 </html>
