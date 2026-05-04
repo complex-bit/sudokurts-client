@@ -13,6 +13,8 @@
   --wrong:        #ff3333;
   --accent:       #ffffff;
   --cell-size:    min(52px, 10vw);
+  --opponent-selection: rgba(255, 107, 107, 0.10);
+  --player-selection:   rgba(0, 229, 160, 0.10);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,7 +29,6 @@ body {
   min-height: 100vh;
   padding: 24px;
 }
-
 
 
 /* ── Screens ──────────────────────────────────────────────────────────────── */
@@ -115,17 +116,19 @@ button:hover { opacity: 0.85; }
 .numpad {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
+    /* border: 2px solid var(--border-box); */
     gap: 6px;
     width: 100%;
     max-width: calc(var(--cell-size) * 9);
 }
 
 .numpad-key {
+    background: var(---background);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
     padding: 12px 0;
     font-size: 1.1rem;
 }
-
-
 
 /* ── Scoreboard ───────────────────────────────────────────────────────────── */
 
@@ -199,16 +202,18 @@ button:hover { opacity: 0.85; }
 
 .cell-given    { color: var(--given); }
 .cell-empty    { cursor: pointer; }
-.cell-empty:focus,
-.cell-empty:hover { background: var(--surface); }
+.cell-empty:hover { background: var(--surface); } /* .cell-empty:focus, */
 .cell-mine     { color: var(--mine);     background: rgba(0,229,160,0.08); }
 .cell-opponent { color: var(--opponent); background: rgba(255,107,107,0.08); }
-.cell-selected { background: var(--surface); outline: 2px solid var(--accent); }
+.cell-selected { background: var(--player-selection); } 
+.cell-opponent-selected { background: var(--opponent-selection); }
+.cell-selected.cell-opponent-selected { background: rgba(128, 168, 130, 0.15); }
 
 .cell-wrong {
   background: rgba(255,51,51,0.2);
-  animation: wrong-flash 0.6s ease;
+  animation: wrong-flash 0.5s ease;
 }
+
 
 @keyframes wrong-flash {
   0%   { background: rgba(255,51,51,0.5); }
