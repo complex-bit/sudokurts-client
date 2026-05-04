@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap');
+
+:root {
+  --background:   #0d0d0d;
+  --surface:      #161616;
+  --border:       #2a2a2a;
+  --border-box:   #444;
+  --text:         #e8e8e8;
+  --text-dim:     #666;
+  --mine:         #00e5a0;   /* player's correct cells  */
+  --opponent:     #ff6b6b;   /* opponent's correct cells */
+  --given:        #9a9a9a;   /* pre-filled puzzle cells  */
+  --wrong:        #ff3333;
+  --accent:       #ffffff;
+  --cell-size:    52px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--background);
+  color: var(--text);
+  font-family: 'IBM Plex Mono', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+
+
+/* ── Screens ──────────────────────────────────────────────────────────────── */
+
+
+#screen-home,
+#screen-game,
+
+#screen-gameover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+#screen-home button {
+    margin-top: 24px;
+}
+
+#screen-waiting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+
+/* ── Home ─────────────────────────────────────────────────────────────────── */
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+/* ── Waiting ──────────────────────────────────────────────────────────────── */
+
+.waiting-text {
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: var(--text);
+}
+
+.spinner {
+  align-self: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Buttons ──────────────────────────────────────────────────────────────── */
+
+button {
+  background: var(--accent);
+  color: var(--background);
+  border: none;
+  padding: 12px 36px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: opacity 0.15s;
+}
+
+button:hover { opacity: 0.85; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover { color: var(--text); border-color: var(--text-dim); }
+
+/* ── Scoreboard ───────────────────────────────────────────────────────────── */
+
+.scoreboard {
+  display: flex;
+  gap: 48px;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.score-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.score-value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.lives {
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+}
+
+.lives-mine {color: var(--mine); }
+.lives-opponent {color: var(--opponent); }
+
+.score-mine  .score-value { color: var(--mine); }
+.score-opponent .score-value { color: var(--opponent); }
+
+/* ── Board ────────────────────────────────────────────────────────────────── */
+
+.board {
+  display: grid;
+  grid-template-rows: repeat(9, var(--cell-size));
+  border: 2px solid var(--border-box);
+  gap: 0;
+}
+
+.board-row {
+  display: grid;
+  grid-template-columns: repeat(9, var(--cell-size));
+}
+
+/* Draw thick borders at 3x3 box boundaries */
+.board-row:nth-child(3n) .cell { border-bottom: 2px solid var(--border-box); }
+.board-row .cell:nth-child(3n) { border-right:  2px solid var(--border-box); }
+
+.cell {
+  width:  var(--cell-size);
+  height: var(--cell-size);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: default;
+  outline: none;
+  transition: background 0.1s;
+  user-select: none;
+}
+
+.cell-given    { color: var(--given); }
+.cell-empty    { cursor: pointer; }
+.cell-empty:focus,
+.cell-empty:hover { background: var(--surface); }
+.cell-mine     { color: var(--mine);     background: rgba(0,229,160,0.08); }
+.cell-opponent { color: var(--opponent); background: rgba(255,107,107,0.08); }
+
+.cell-wrong {
+  background: rgba(255,51,51,0.2);
+  animation: wrong-flash 0.6s ease;
+}
+
+@keyframes wrong-flash {
+  0%   { background: rgba(255,51,51,0.5); }
+  100% { background: rgba(255,51,51,0.0); }
+}
+
+/* ── Hint ─────────────────────────────────────────────────────────────────── */
+
+.hint {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+}
+
+/* ── Game over ────────────────────────────────────────────────────────────── */
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}   
+
+.gameover-scores {
+  font-size: 1.5rem;
+  color: var(--text-dim);
+}
+
+/* --- Animation ----------------------------------------------------------------- */
+
+@keyframes wobble {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.4); }
+  60%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+.wobble {
+  animation: wobble 0.3s ease;
+}
+
+
+
