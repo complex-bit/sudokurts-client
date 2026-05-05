@@ -30,6 +30,11 @@ body {
   padding: 24px;
 }
 
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
 
 /* ── Screens ──────────────────────────────────────────────────────────────── */
 
@@ -59,10 +64,7 @@ body {
 
 /* ── Home ─────────────────────────────────────────────────────────────────── */
 
-h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
+#screen-home h1 {
   color: var(--accent);
 }
 
@@ -168,6 +170,11 @@ button:hover { opacity: 0.85; }
 .score-opponent .score-value { color: var(--opponent); }
 
 /* ── Board ────────────────────────────────────────────────────────────────── */
+
+
+#screen-game h1 {
+    color: var(--text-dim);
+}
 
 .board {
   display: grid;
