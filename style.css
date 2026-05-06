@@ -38,7 +38,7 @@ h1 {
 
 /* ── Screens ──────────────────────────────────────────────────────────────── */
 
-
+#screen-username, /* NEW */
 #screen-home,
 #screen-game,
 
@@ -67,6 +67,14 @@ h1 {
 #screen-home h1 {
   color: var(--accent);
 }
+
+/* NEW >>> */
+
+#screen-username h1 {
+      color: var(--accent);
+}
+
+/* NEW <<< */
 
 /* ── Waiting ──────────────────────────────────────────────────────────────── */
 
@@ -114,7 +122,36 @@ button:hover { opacity: 0.85; }
 
 .btn-secondary:hover { color: var(--text); border-color: var(--text-dim); }
 
+
+/* NEW >>> */
+
+input[type="text"] {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 12px 24px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+input[type="text"]:focus {
+  border-color: var(--accent);
+}
+
+input[type="text"]::placeholder {
+  color: var(--text-dim);
+}
+
+/* NEW <<< */
+
 /* --- Numpad ---------------------------------------------------------------- */
+
 .numpad {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
